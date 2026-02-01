@@ -1,41 +1,38 @@
-import pg from "pg";
-
-const { Pool } = pg;
+const { Pool } = require("pg");
 
 if (!process.env.DB_URL) {
-  throw new Error("❌ DB_URL is not defined in environment variables");
+  throw new Error("❌ DB_URL is not defined");
 }
 
-export const pool = new Pool({
+const pool = new Pool({
   connectionString: process.env.DB_URL,
   ssl: {
     rejectUnauthorized: false,
   },
 });
 
-/**
- * Run a query
- * @param {string} text
- * @param {Array} params
- */
-export async function query(text, params = []) {
+async function query(text, params = []) {
   const client = await pool.connect();
   try {
-    const res = await client.query(text, params);
-    return res;
+    return await client.query(text, params);
   } finally {
     client.release();
   }
 }
 
-/**
- * Test DB connection
- */
-export async function testDB() {
+async function testDB() {
   try {
     await query("SELECT 1");
-    console.log("✅ Database connected successfully");
+    console.log("✅ Database connected");
   } catch (err) {
-    console.error("❌ Database connection failed:", err.message);
+    console.error("❌ Database error:", err.message);
   }
 }
+
+module.exports = {
+  pool,
+  query,
+  testDB,
+};
+
+  
