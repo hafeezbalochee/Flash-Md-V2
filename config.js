@@ -16,7 +16,7 @@ module.exports = {
         ? process.env.PREFIX.split(',').map(p => p.trim())
         : [''],
 
-    NUMBER: process.env.YOUR_NUMBER || '254742063632',
+    NUMBER: process.env.YOUR_NUMBER || '923003534702',
     MODE: (process.env.MODE || 'private').toLowerCase().trim(),
     WARN_LIMIT: process.env.WARNINGS || '3',
     ON: process.env.YOUR_NAME || 'FLASH-MD',
@@ -30,7 +30,7 @@ module.exports = {
     HEROKU_API_KEY: process.env.HEROKU_API_KEY,
     HEROKU_APP_NAME: process.env.HEROKU_APP_NAME,
     sessionBase64: process.env.SESSION || '',
-    timezone: 'Africa/Nairobi',
+    timezone: 'Asia/Karachi',
 
     USER_LID: process.env.YOUR_LID, 
 
