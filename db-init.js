@@ -1,10 +1,8 @@
- import { query, testDB } from "./db.js";
+const { query, testDB } = require("./db");
 
-export async function initDB() {
-  // Test connection first
+async function initDB() {
   await testDB();
 
-  // Users table
   await query(`
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
@@ -15,7 +13,6 @@ export async function initDB() {
     );
   `);
 
-  // Sessions table (for auth / bot state)
   await query(`
     CREATE TABLE IF NOT EXISTS sessions (
       id SERIAL PRIMARY KEY,
@@ -25,7 +22,6 @@ export async function initDB() {
     );
   `);
 
-  // Settings table
   await query(`
     CREATE TABLE IF NOT EXISTS settings (
       key TEXT PRIMARY KEY,
@@ -33,5 +29,9 @@ export async function initDB() {
     );
   `);
 
-  console.log("✅ Database tables initialized");
+  console.log("✅ Database initialized");
 }
+
+module.exports = { initDB };
+ 
+     
