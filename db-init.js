@@ -1,6 +1,6 @@
 const { query, testDB } = require("./db");
 
-async function initDB() {
+module.exports = async function () {
   await testDB();
 
   await query(`
@@ -30,8 +30,4 @@ async function initDB() {
   `);
 
   console.log("✅ Database initialized");
-}
-
-module.exports = { initDB };
- 
-     
+};
